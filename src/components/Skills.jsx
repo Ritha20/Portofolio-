@@ -30,9 +30,9 @@ export default function Skills() {
       title: "Data Analysis",
       skills: [
         { name: "CSPro", level: 85 },
-        { name: "Applied Statistics", level: 95 },
+        { name: "Python", level: 90 },
         { name: "Data Management", level: 90 },
-        { name: "Actuarial Science", level: 85 }
+        { name: "R", level: 85 }
       ]
     },
     design: {

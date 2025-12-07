@@ -56,7 +56,7 @@ export default function Hero() {
             <div className="relative group">
               <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-sage-500 shadow-2xl shadow-sage-500/20">
                 {photo ? (
-                  <img src={photo} alt="Profile" className="w-full h-full object-cover" />
+                  <img src="IMG_1454.JPG" alt="Profile" className="w-full h-full object-cover" />
                 ) : (
                   <div className="w-full h-full bg-gray-800 flex items-center justify-center">
                     <Upload size={48} className="text-gray-600" />
