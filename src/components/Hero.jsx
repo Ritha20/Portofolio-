@@ -1,18 +1,14 @@
-import { Upload, Github, Linkedin, Mail } from 'lucide-react';
-import { useState } from 'react';
+import { Github, Linkedin, Mail, Download } from 'lucide-react';
 
 export default function Hero() {
-  const [photo, setPhoto] = useState(null);
-
-  const handlePhotoUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPhoto(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+  const handleDownloadCV = () => {
+    // This would be the path to your actual CV file in your project
+    const link = document.createElement('a');
+    link.href = '/path/to/your-cv.pdf'; // Update this path to your actual CV file
+    link.download = 'Ritha-Theonestine-CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -31,14 +27,24 @@ export default function Hero() {
               Applied Statistics graduate with expertise in data analysis and modern web development.
               Transforming data into insights and creating elegant digital experiences.
             </p>
-            <div className="flex gap-4 justify-center md:justify-start">
+            
+            {/* Buttons section */}
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start mb-6">
               <a href="#contact" className="bg-sage-500 hover:bg-sage-600 text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
                 Get in Touch
               </a>
               <a href="#projects" className="border border-sage-500 text-sage-400 hover:bg-sage-500/10 px-8 py-3 rounded-lg transition-all duration-300">
                 View Work
               </a>
+              <button
+                onClick={handleDownloadCV}
+                className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg transition-all duration-300"
+              >
+                <Download size={20} />
+                Download CV
+              </button>
             </div>
+
             <div className="flex gap-6 mt-8 justify-center md:justify-start">
               <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-sage-400 transition-colors">
                 <Github size={24} />
@@ -46,7 +52,7 @@ export default function Hero() {
               <a href="https://www.linkedin.com/in/irakoze-ritha/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-sage-400 transition-colors">
                 <Linkedin size={24} />
               </a>
-              <a href="https://mail.google.com/mail/u/0/#inbox?compose=new" className="text-gray-400 hover:text-sage-400 transition-colors">
+              <a href="mailto:your.email@example.com" className="text-gray-400 hover:text-sage-400 transition-colors">
                 <Mail size={24} />
               </a>
             </div>
@@ -55,23 +61,23 @@ export default function Hero() {
           <div className="flex-shrink-0">
             <div className="relative group">
               <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-sage-500 shadow-2xl shadow-sage-500/20">
-                {photo ? (
-                  <img src="IMG_1454.JPG" alt="Profile" className="w-full h-full object-cover" />
-                ) : (
-                  <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                    <Upload size={48} className="text-gray-600" />
-                  </div>
-                )}
-              </div>
-              <label className="absolute bottom-4 right-4 bg-sage-500 hover:bg-sage-600 text-white p-3 rounded-full cursor-pointer transition-all duration-300 transform hover:scale-110 shadow-lg">
-                <Upload size={20} />
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handlePhotoUpload}
-                  className="hidden"
+                {/* Replace with your actual image path */}
+                <img 
+                  src="IMG_1454.jpg" 
+                  alt="Irakoze Ritha Theonestine" 
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    // Fallback styling if image doesn't load
+                    e.target.style.display = 'none';
+                    e.target.parentElement.innerHTML = `
+                      <div class="w-full h-full bg-gradient-to-br from-sage-400 to-sage-600 flex items-center justify-center text-white text-4xl font-bold">
+                        RT
+                      </div>
+                    `;
+                  }}
                 />
-              </label>
+              </div>
             </div>
           </div>
         </div>
