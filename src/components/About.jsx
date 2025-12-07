@@ -69,21 +69,7 @@ export default function About() {
               </ul>
             </div>
 
-            <div className="bg-gray-800 p-6 rounded-lg border border-sage-500/30">
-              <h3 className="text-lg font-semibold text-white mb-4">Upload Resume</h3>
-              <label className="flex items-center justify-center gap-3 border-2 border-dashed border-gray-600 hover:border-sage-400 rounded-lg p-6 cursor-pointer transition-all duration-300 group">
-                <Upload className="text-gray-400 group-hover:text-sage-400 transition-colors" size={24} />
-                <span className="text-gray-400 group-hover:text-sage-400 transition-colors">
-                  {resume || "Choose file"}
-                </span>
-                <input
-                  type="file"
-                  accept=".pdf,.doc,.docx"
-                  onChange={handleResumeUpload}
-                  className="hidden"
-                />
-              </label>
-            </div>
+          
           </div>
 
           <div>
