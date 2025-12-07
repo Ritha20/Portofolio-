@@ -1,0 +1,107 @@
+@import 'tailwindcss';
+
+@layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gray-900 text-white;
+  }
+}
+
+@layer utilities {
+  .text-sage-400 {
+    color: #9CA986;
+  }
+
+  .text-sage-500 {
+    color: #87986A;
+  }
+
+  .bg-sage-400 {
+    background-color: #9CA986;
+  }
+
+  .bg-sage-500 {
+    background-color: #87986A;
+  }
+
+  .bg-sage-600 {
+    background-color: #6B7A52;
+  }
+
+  .border-sage-400 {
+    border-color: #9CA986;
+  }
+
+  .border-sage-500 {
+    border-color: #87986A;
+  }
+
+  .hover\:bg-sage-400:hover {
+    background-color: #9CA986;
+  }
+
+  .hover\:bg-sage-500:hover {
+    background-color: #87986A;
+  }
+
+  .hover\:bg-sage-600:hover {
+    background-color: #6B7A52;
+  }
+
+  .hover\:text-sage-400:hover {
+    color: #9CA986;
+  }
+
+  .hover\:border-sage-400:hover {
+    border-color: #9CA986;
+  }
+
+  .hover\:border-sage-500:hover {
+    border-color: #87986A;
+  }
+
+  .focus\:border-sage-500:focus {
+    border-color: #87986A;
+  }
+
+  .focus\:ring-sage-500:focus {
+    --tw-ring-color: #87986A;
+  }
+
+  .shadow-sage-500\/20 {
+    --tw-shadow-color: rgba(135, 152, 106, 0.2);
+    --tw-shadow: var(--tw-shadow-colored);
+  }
+
+  .shadow-sage-500\/30 {
+    --tw-shadow-color: rgba(135, 152, 106, 0.3);
+    --tw-shadow: var(--tw-shadow-colored);
+  }
+
+  .from-sage-400 {
+    --tw-gradient-from: #9CA986;
+  }
+
+  .from-sage-500 {
+    --tw-gradient-from: #87986A;
+  }
+
+  .to-sage-400 {
+    --tw-gradient-to: #9CA986;
+  }
+
+  .via-sage-500 {
+    --tw-gradient-via: #87986A;
+  }
+
+  .bg-sage-500\/10 {
+    background-color: rgba(135, 152, 106, 0.1);
+  }
+
+  .border-sage-500\/30 {
+    border-color: rgba(135, 152, 106, 0.3);
+  }
+}
