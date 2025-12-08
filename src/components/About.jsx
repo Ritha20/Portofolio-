@@ -1,8 +1,9 @@
-import { Upload, Award, Briefcase, GraduationCap } from 'lucide-react';
+import { Upload, Award, Briefcase, GraduationCap, ExternalLink, FileText } from 'lucide-react';
 import { useState } from 'react';
 
 export default function About() {
   const [resume, setResume] = useState(null);
+  const [selectedCert, setSelectedCert] = useState(null);
 
   const handleResumeUpload = (e) => {
     const file = e.target.files[0];
@@ -34,11 +35,100 @@ export default function About() {
     }
   ];
 
+  // Updated certifications array with links/images
   const certifications = [
-    "Frontend Development - Igire Rwanda Organization",
-    "Virtual Assistant - ALX Rwanda",
-    "Web Fundamentals - Udacity"
+    {
+      name: "Frontend Development",
+      issuer: "Igire Rwanda Organization",
+      date: "2023",
+      link: "https://example.com/frontend-certificate.pdf",
+      type: "pdf", 
+      preview: "https://example.com/cert-thumbnail.jpg" 
+    },
+    {
+      name: "Web Fundamentals",
+      issuer: "Udacity",
+      date: "2023",
+      link: "https://www.udacity.com/certificate/e/96a26430-75e4-11ef-a036-2bb46d250522",
+      type: "credly",
+    },
+    {
+      name: "Hackathon Winner",
+      issuer: "Nation Institute Statistics of Rwanda",
+      date: "2023",
+      link: "",
+      type: "image",
+    },
+    {
+      name: "Virtual Assistant",
+      issuer: "ALX Rwanda",
+      date: "2023",
+      link: "https://savanna.alxafrica.com/certificates/yGCXsrhHLe",
+      type: "https://imgur.com/a/oM15jOU",
+    },
   ];
+
+  // Modal for certificate preview
+  const CertificateModal = ({ cert, onClose }) => (
+    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+      <div className="bg-gray-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto">
+        <div className="p-6">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-2xl font-bold text-white">{cert.name}</h3>
+            <button
+              onClick={onClose}
+              className="text-gray-400 hover:text-white text-2xl"
+            >
+              ×
+            </button>
+          </div>
+          <p className="text-gray-300 mb-4">Issued by: {cert.issuer}</p>
+          
+          {cert.type === 'image' || cert.preview ? (
+            <div className="mb-4">
+              <img 
+                src={cert.preview || cert.link} 
+                alt={`${cert.name} Certificate`}
+                className="w-full h-auto rounded-lg border border-gray-700"
+              />
+            </div>
+          ) : cert.type === 'pdf' ? (
+            <div className="bg-gray-900 p-6 rounded-lg mb-4">
+              <FileText className="text-sage-400 mx-auto mb-4" size={64} />
+              <p className="text-gray-300 text-center mb-4">
+                PDF Certificate - Click below to view/download
+              </p>
+            </div>
+          ) : (
+            <div className="bg-gray-900 p-6 rounded-lg mb-4">
+              <Award className="text-sage-400 mx-auto mb-4" size={64} />
+              <p className="text-gray-300 text-center">
+                Digital Credential
+              </p>
+            </div>
+          )}
+          
+          <div className="flex gap-4">
+            <a
+              href={cert.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 bg-sage-500 hover:bg-sage-600 text-white py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors"
+            >
+              <ExternalLink size={20} />
+              View Certificate
+            </a>
+            <button
+              onClick={onClose}
+              className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-3 px-4 rounded-lg transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <section id="about" className="min-h-screen py-20 px-4">
@@ -54,22 +144,75 @@ export default function About() {
               Currently contributing to Rwanda's digital transformation as a Professional Intern in NISR's Big Data Department.
             </p>
 
+            {/* Updated Certifications Section */}
             <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 mb-6">
               <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
                 <Award className="text-sage-400" size={20} />
                 Certifications
               </h3>
-              <ul className="space-y-2">
+              <div className="space-y-3">
                 {certifications.map((cert, index) => (
-                  <li key={index} className="text-gray-300 flex items-start gap-2">
-                    <span className="text-sage-400 mt-1">•</span>
-                    {cert}
-                  </li>
+                  <div
+                    key={index}
+                    className="group cursor-pointer"
+                    onClick={() => setSelectedCert(cert)}
+                  >
+                    <div className="bg-gray-900 hover:bg-gray-850 p-4 rounded-lg border border-gray-700 hover:border-sage-500 transition-all duration-300">
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <h4 className="text-white font-medium">{cert.name}</h4>
+                            <ExternalLink 
+                              className="text-gray-500 group-hover:text-sage-400 transition-colors" 
+                              size={16} 
+                            />
+                          </div>
+                          <div className="flex items-center gap-4 text-sm">
+                            <span className="text-gray-400">{cert.issuer}</span>
+                            <span className="text-sage-400">{cert.date}</span>
+                          </div>
+                        </div>
+                        <div className="ml-4">
+                          {cert.type === 'pdf' ? (
+                            <FileText className="text-sage-400" size={20} />
+                          ) : cert.type === 'image' ? (
+                            <Award className="text-sage-400" size={20} />
+                          ) : (
+                            <Award className="text-sage-400" size={20} />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
 
-          
+            {/* Resume Upload Section */}
+            {/* <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
+              <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                <Upload className="text-sage-400" size={20} />
+                Resume
+              </h3>
+              <div className="flex items-center gap-4">
+                <label className="flex-1">
+                  <input
+                    type="file"
+                    className="hidden"
+                    accept=".pdf,.doc,.docx"
+                    onChange={handleResumeUpload}
+                  />
+                  <div className="bg-sage-500 hover:bg-sage-600 text-white py-3 px-4 rounded-lg cursor-pointer text-center transition-colors">
+                    Upload Resume
+                  </div>
+                </label>
+                {resume && (
+                  <div className="flex-1">
+                    <p className="text-gray-300 truncate">{resume}</p>
+                  </div>
+                )}
+              </div>
+            </div> */}
           </div>
 
           <div>
@@ -95,6 +238,14 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      {/* Certificate Modal */}
+      {selectedCert && (
+        <CertificateModal 
+          cert={selectedCert} 
+          onClose={() => setSelectedCert(null)} 
+        />
+      )}
     </section>
   );
 }
