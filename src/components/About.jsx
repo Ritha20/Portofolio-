@@ -56,7 +56,7 @@ export default function About() {
       name: "Hackathon Winner",
       issuer: "Nation Institute Statistics of Rwanda",
       date: "2023",
-      link: "",
+      link: "https://imgur.com/a/oM15jOU",
       type: "image",
     },
     {

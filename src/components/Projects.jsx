@@ -23,7 +23,7 @@ export default function Projects() {
     {
       title: "A blog",
       description: "A simple blog built in Next Js with a simple interactivity",
-      tags: ["React", "Tailwind CSS"],
+      tags: ["Next js", "Tailwind CSS"],
       image: "Blog.png",
       githubLink: "https://github.com/Ritha20/Next-js",
       liveLink: "https://next-js-chi-mauve.vercel.app/"
@@ -60,7 +60,7 @@ export default function Projects() {
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-62 object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   onError={(e) => {
                     // Fallback if image doesn't load
                     e.target.style.display = 'none';
