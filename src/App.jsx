@@ -18,7 +18,7 @@ function App() {
       <footer className="bg-gray-900 border-t border-gray-800 py-8">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-gray-400">
-            © 2024 Irakoze Ritha Theonestine. Built with React & Tailwind CSS.
+            © 2025 Irakoze Ritha Theonestine A professional Portofolio.
           </p>
         </div>
       </footer>
